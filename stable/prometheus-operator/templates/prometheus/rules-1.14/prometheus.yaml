@@ -125,14 +125,14 @@ spec:
       for: 10m
       labels:
         severity: warning
-    - alert: PrometheusOutOfOrderTimestamps
-      annotations:
-        description: Prometheus {{`{{`}}$labels.namespace{{`}}`}}/{{`{{`}}$labels.pod{{`}}`}} is dropping {{`{{`}} printf "%.4g" $value  {{`}}`}} samples/s with timestamps arriving out of order.
-        summary: Prometheus drops samples with out-of-order timestamps.
-      expr: rate(prometheus_target_scrapes_sample_out_of_order_total{job="{{ $prometheusJob }}",namespace="{{ $namespace }}"}[5m]) > 0
-      for: 10m
-      labels:
-        severity: warning
+    # - alert: PrometheusOutOfOrderTimestamps
+    #   annotations:
+    #     description: Prometheus {{`{{`}}$labels.namespace{{`}}`}}/{{`{{`}}$labels.pod{{`}}`}} is dropping {{`{{`}} printf "%.4g" $value  {{`}}`}} samples/s with timestamps arriving out of order.
+    #     summary: Prometheus drops samples with out-of-order timestamps.
+    #   expr: rate(prometheus_target_scrapes_sample_out_of_order_total{job="{{ $prometheusJob }}",namespace="{{ $namespace }}"}[5m]) > 0
+    #   for: 10m
+    #   labels:
+    #     severity: warning
     - alert: PrometheusRemoteStorageFailures
       annotations:
         description: Prometheus {{`{{`}}$labels.namespace{{`}}`}}/{{`{{`}}$labels.pod{{`}}`}} failed to send {{`{{`}} printf "%.1f" $value {{`}}`}}% of the samples to {{`{{`}} $labels.remote_name{{`}}`}}:{{`{{`}} $labels.url {{`}}`}}
